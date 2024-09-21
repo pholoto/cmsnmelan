@@ -40,7 +40,7 @@ def memory_section(children_videos):
     st.subheader("Vòng 3: Lời chúc từ cả nhà")
 
     # Tabs for each child
-    tabs = st.tabs([f"Lời chúc của {child}" for child in children_videos.keys()])
+    tabs = st.tabs([f"{child}" for child in children_videos.keys()])
     
     for i, (child, video_url) in enumerate(children_videos.items()):
         with tabs[i]:
