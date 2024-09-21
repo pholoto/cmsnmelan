@@ -174,5 +174,4 @@ def main():
     # Display the updated scores in the sidebar
     display_sidebar_scores()
 
-if __name__ == "__main__":
-    main()
+main()
