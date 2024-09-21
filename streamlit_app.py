@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_timeline import timeline
 
 # Section 1: MCQs Questions about Self
 def mcq_section(questions, answers_by_child):
@@ -73,6 +74,15 @@ def score_conclusion_section():
     # Fun message for the lowest participant
     if lowest_3:
         st.write(f"😂 Ngoài ra thì có **{lowest_3[0][0]}** cần đi chơi với mẹ/bác/chị Lan để hiểu nhau hơn!")
+
+# Section to display the timeline (this will always show when the memory section is shown)
+def display_timeline():
+    with open('timeline.json', "r") as f:
+        data = f.read()
+    
+    # Render timeline
+    timeline(data, height=800)
+
 
 # Main function to run the app
 def main():
@@ -164,6 +174,7 @@ def main():
     # Show memory videos only after clicking the button
     if st.session_state.show_memory_section:
         memory_section(children_videos)
+        display_timeline()
 
 if __name__ == "__main__":
     main()
