@@ -153,9 +153,10 @@ def main():
         
         st.session_state.scoring_done = True  # Mark scoring as done to avoid recalculating
 
-        # Display scores
+    # Always show scores if scoring is done
+    if st.session_state.scoring_done:
         score_conclusion_section()
-        
+
     # Show button to reveal the memory videos after the scores are displayed
     if st.session_state.scoring_done and st.button("Tiếp tục đến phần lời chúc"):
         st.session_state.show_memory_section = True
