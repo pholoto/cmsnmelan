@@ -197,7 +197,7 @@ def main():
     st.title("Chúc mừng sinh nhật mẹ 🎉💃")
 
     st.write("....")
-    st.image(photo0.png, use_column_width = True)
+    st.image("photo0.png", use_column_width = True)
 
     st.subheader("Word Cloud: 3 điểm bạn thích nhất ở mẹ/bác/chị Lan?")
     st.write("....")
