@@ -77,10 +77,10 @@ def score_conclusion_section():
     prev_score=-1
     i=1
     for _, (name, score) in enumerate(top):
-        i+=1
         if prev_score==score:
             i -= 1
         st.write(f"**{i}. {name}** với số điểm: {score} điểm")
+        i+=1
         prev_score = score
     
     # Fun message for the top participant
