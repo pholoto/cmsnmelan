@@ -61,12 +61,16 @@ def score_conclusion_section():
     for i in range(2, len(sorted_scores)-1):
         if sorted_scores[i][1]==sorted_scores[i+1][1]:
             top = sorted_scores[:i+1]
+        else:
+            break
     
     # Lowest 3 participants
     lowest = sorted(sorted_scores, key=lambda x: x[1])[:3]
     for i in range(2, len(sorted_scores)-1):
         if sorted_scores[i][1]==sorted_scores[i+1][1]:
             lowest = sorted_scores[:i+1]
+        else:
+            break
 
     # Display the top 3 participants
     st.write("🎉 **Cảm ơn cả nhà đã tham gia trò chơi! Dưới đây là những người có điểm số cao nhất:**")
@@ -99,7 +103,7 @@ def score_conclusion_section():
             string = lowest[0][0]
             for i in range(len(lowest)-1):
                 if lowest[i] == lowest[i+1]:
-                    string = string + " và " + top[i+1][0]
+                    string = string + " và " + lowest[i+1][0]
                 else:
                     st.write(f"😂 Ngoài ra thì có **{string}** cần đi chơi với mẹ/bác/chị Lan để hiểu nhau hơn!")
                     break
