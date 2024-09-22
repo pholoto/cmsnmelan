@@ -60,7 +60,7 @@ def score_conclusion_section():
     top = sorted_scores[:3]
     for i in range(2, len(sorted_scores)-1):
         if sorted_scores[i][1]==sorted_scores[i+1][1]:
-            top = sorted_scores[:i+1]
+            top = sorted_scores[:i+2]
         else:
             break
     
@@ -68,19 +68,19 @@ def score_conclusion_section():
     lowest = sorted(sorted_scores, key=lambda x: x[1])[:3]
     for i in range(2, len(sorted_scores)-1):
         if sorted_scores[i][1]==sorted_scores[i+1][1]:
-            lowest = sorted(sorted_scores, key=lambda x: x[1])[:i+1]
+            lowest = sorted(sorted_scores, key=lambda x: x[1])[:i+2]
         else:
             break
 
     # Display the top 3 participants
     st.write("🎉 **Cảm ơn cả nhà đã tham gia trò chơi! Dưới đây là những người có điểm số cao nhất:**")
-    prev_score=-1
-    i=1
+    prev_score = -1
+    i = 1
     for _, (name, score) in enumerate(top):
         if prev_score==score:
             i -= 1
         st.write(f"**{i}. {name}** với số điểm: {score} điểm")
-        i+=1
+        i += 1
         prev_score = score
     
     # Fun message for the top participant
