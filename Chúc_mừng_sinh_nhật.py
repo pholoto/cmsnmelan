@@ -57,23 +57,52 @@ def score_conclusion_section():
     sorted_scores = sorted(st.session_state.scores.items(), key=lambda x: x[1], reverse=True)
     
     # Top 3 participants
-    top_3 = sorted_scores[:3]
+    top = sorted_scores[:3]
+    for i in range(2, len(sorted_scores)-1):
+        if sorted_scores[i][1]==sorted_scores[i+1][1]:
+            top = sorted_scores[:i+1]
     
     # Lowest 3 participants
-    lowest_3 = sorted(sorted_scores, key=lambda x: x[1])[:3]
+    lowest = sorted(sorted_scores, key=lambda x: x[1])[:3]
+    for i in range(2, len(sorted_scores)-1):
+        if sorted_scores[i][1]==sorted_scores[i+1][1]:
+            lowest = sorted_scores[:i+1]
 
     # Display the top 3 participants
-    st.write("🎉 **Cảm ơn cả nhà đã tham gia trò chơi! Dưới đây là 3 người có điểm số cao nhất:**")
-    for i, (name, score) in enumerate(top_3):
-        st.write(f"**{i + 1}. {name}** với số điểm: {score} điểm")
+    st.write("🎉 **Cảm ơn cả nhà đã tham gia trò chơi! Dưới đây là những người có điểm số cao nhất:**")
+    prev_score=0
+    for i, (name, score) in enumerate(top):
+        if prev_score==score:
+            st.write(f"**{i}. {name}** với số điểm: {score} điểm")
+        else:
+            st.write(f"**{i + 1}. {name}** với số điểm: {score} điểm")
+        prev_score = score
     
     # Fun message for the top participant
-    if top_3:
-        st.write(f"🏆 Sau 2 vòng thi căng thẳng, **{top_3[0][0]}** là người hiểu mẹ Lan nhất quả đất 🤯 Sốc ngang!")
+    if top:
+        if top[0][1]!=top[1][1]:
+            st.write(f"🏆 Sau 2 vòng thi căng thẳng, **{top[0][0]}** là người hiểu mẹ Lan nhất quả đất 🤯 Sốc ngang!")
+        else:
+            string = top[0][0]
+            for i in range(len(top)-1):
+                if top[i] == top[i+1]:
+                    string = string + " và " + top[i+1][0]
+                else:
+                    st.write(f"🏆 Sau 2 vòng thi căng thẳng, **{string}** là người hiểu mẹ Lan nhất quả đất 🤯 Sốc ngang!")
+                    break
     
     # Fun message for the lowest participant
-    if lowest_3:
-        st.write(f"😂 Ngoài ra thì có **{lowest_3[0][0]}** cần đi chơi với mẹ/bác/chị Lan để hiểu nhau hơn!")
+    if lowest:
+        if lowest[0][1]!=lowest[1][1]:
+            st.write(f"😂 Ngoài ra thì có **{lowest[0][0]}** cần đi chơi với mẹ/bác/chị Lan để hiểu nhau hơn!")
+        else:
+            string = lowest[0][0]
+            for i in range(len(lowest)-1):
+                if lowest[i] == lowest[i+1]:
+                    string = string + " và " + top[i+1][0]
+                else:
+                    st.write(f"😂 Ngoài ra thì có **{string}** cần đi chơi với mẹ/bác/chị Lan để hiểu nhau hơn!")
+                    break
 
 # Section to display the timeline (this will always show when the memory section is shown)
 def display_timeline():
