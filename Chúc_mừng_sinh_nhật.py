@@ -74,9 +74,10 @@ def score_conclusion_section():
 
     # Display the top 3 participants
     st.write("🎉 **Cảm ơn cả nhà đã tham gia trò chơi! Dưới đây là những người có điểm số cao nhất:**")
+    sorted_scores = sorted(st.session_state.scores.items(), key=lambda x: x[1], reverse=True)
     prev_score = -1
     i = 1
-    for _, (name, score) in enumerate(top):
+    for _, (name, score) in enumerate(sorted_scores):
         if prev_score==score:
             i -= 1
         st.write(f"**{i}. {name}** với số điểm: {score} điểm")
