@@ -89,7 +89,7 @@ def score_conclusion_section():
         else:
             string = top[0][0]
             for i in range(len(top)-1):
-                if top[i] == top[i+1]:
+                if top[i][1] == top[i+1][1]:
                     string = string + " và " + top[i+1][0]
                 else:
                     st.write(f"🏆 Sau 2 vòng thi căng thẳng, **{string}** là người hiểu mẹ Lan nhất quả đất 🤯 Sốc ngang!")
@@ -102,7 +102,7 @@ def score_conclusion_section():
         else:
             string = lowest[0][0]
             for i in range(len(lowest)-1):
-                if lowest[i] == lowest[i+1]:
+                if lowest[i][1] == lowest[i+1][1]:
                     string = string + " và " + lowest[i+1][0]
                 else:
                     st.write(f"😂 Ngoài ra thì có **{string}** cần đi chơi với mẹ/bác/chị Lan để hiểu nhau hơn!")
