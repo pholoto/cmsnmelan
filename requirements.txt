@@ -1,2 +1,5 @@
 streamlit
 streamlit-timeline
+wordcloud
+matplotlib
+collections
