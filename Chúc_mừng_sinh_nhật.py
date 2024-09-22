@@ -75,11 +75,12 @@ def score_conclusion_section():
     # Display the top 3 participants
     st.write("🎉 **Cảm ơn cả nhà đã tham gia trò chơi! Dưới đây là những người có điểm số cao nhất:**")
     prev_score=0
-    for i, (name, score) in enumerate(top):
+    i=-1
+    for (name, score) in enumerate(top):
+        i += 1
         if prev_score==score:
-            st.write(f"**{i}. {name}** với số điểm: {score} điểm")
-        else:
-            st.write(f"**{i + 1}. {name}** với số điểm: {score} điểm")
+            i -= 1
+        st.write(f"**{i}. {name}** với số điểm: {score} điểm")
         prev_score = score
     
     # Fun message for the top participant
@@ -90,7 +91,6 @@ def score_conclusion_section():
             string = top[0][0]
             for i in range(len(top)-1):
                 if top[i][1] == top[i+1][1]:
-                    st.write(string)
                     string = string + " và " + top[i+1][0]
                 else:
                     st.write(f"🏆 Sau 2 vòng thi căng thẳng, **{string}** là người hiểu mẹ Lan nhất quả đất 🤯 Sốc ngang!")
@@ -104,7 +104,6 @@ def score_conclusion_section():
             string = lowest[0][0]
             for i in range(len(lowest)-1):
                 if lowest[i][1] == lowest[i+1][1]:
-                    st.write(string)
                     string = string + " và " + lowest[i+1][0]
                 else:
                     st.write(f"😂 Ngoài ra thì có **{string}** cần đi chơi với mẹ/bác/chị Lan để hiểu nhau hơn!")
