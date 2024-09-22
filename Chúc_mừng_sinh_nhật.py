@@ -51,7 +51,7 @@ def display_word_cloud():
     word_freq = process_word_data(word_data)
     
     # Generate the word cloud from the frequency dictionary
-    wordcloud = WordCloud(width=800, height=400, background_color="white", colormap='tab20b').generate_from_frequencies(word_freq)
+    wordcloud = WordCloud(width=800, height=400, background_color="white", colormap='tab20b', prefer_horizontal=1.0).generate_from_frequencies(word_freq)
     
     # Display the word cloud using matplotlib
     fig, ax = plt.subplots(figsize=(10, 5))
@@ -194,15 +194,15 @@ def display_timeline():
 
 # Main function to run the app
 def main():
-    st.title("Chúc mừng sinh nhật mẹ 🎉💃")
+    st.title("Chúc mừng sinh nhật 🎉💃")
 
-    st.write("....")
+    st.write("Chúc mừng sinh nhật nhà giáo nhân dân kiêm cựu banker kiêm ca sĩ nổi danh Lê Mai Lan! Đây là một trang web nho nhỏ được tạo ra để gửi gắm tình iu của cả nhà tới mẹ/bác/em/chị/con Mai Lan, gồm nhiều phần thú dị như những trò chơi hấp dẫn, các lời chúc có cánh, dòng thời gian đầy hoài niệm...")
     st.image("photo0.png", use_column_width = True)
 
-    st.subheader("Word Cloud: 3 điểm bạn thích nhất ở mẹ/bác/chị Lan?")
-    st.write("....")
+    st.write("Để bắt đầu, dưới đây là những \"từ khóa\" cả nhà dành cho bạn khi được hỏi: Ba điều thấy ấn tượng nhất về bạn. Có thể thấy sự **tích cực, vui vẻ, lạc quan** được xuất hiện với tần suất khá cao!")
 
     display_word_cloud()
+    st.write("Tiếp sau đây, hãy cùng đến với trò chơi nho nhỏ: Ai là người hiểu bạn nhất?!")
 
     # Initialize scores and state flags in session state if not already done
     if 'scores' not in st.session_state:
