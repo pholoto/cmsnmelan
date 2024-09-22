@@ -45,7 +45,6 @@ def process_word_data(word_data):
 
 # Function to generate and display the word cloud
 def display_word_cloud():
-    st.subheader("Word Cloud: 3 điểm bạn thích nhất ở mẹ/bác/chị Lan?")
     
     # Get the data and process it into a frequency dictionary
     word_data = get_word_cloud_data()
@@ -196,6 +195,12 @@ def display_timeline():
 # Main function to run the app
 def main():
     st.title("Chúc mừng sinh nhật mẹ 🎉💃")
+
+    st.write("....")
+    st.image(photo0.png, use_column_width = True)
+
+    st.subheader("Word Cloud: 3 điểm bạn thích nhất ở mẹ/bác/chị Lan?")
+    st.write("....")
 
     display_word_cloud()
 
