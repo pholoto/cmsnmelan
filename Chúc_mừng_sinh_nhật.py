@@ -68,7 +68,7 @@ def score_conclusion_section():
     lowest = sorted(sorted_scores, key=lambda x: x[1])[:3]
     for i in range(2, len(sorted_scores)-1):
         if sorted_scores[i][1]==sorted_scores[i+1][1]:
-            lowest = sorted_scores[:i+1]
+            lowest = sorted(sorted_scores, key=lambda x: x[1])[:i+1]
         else:
             break
 
