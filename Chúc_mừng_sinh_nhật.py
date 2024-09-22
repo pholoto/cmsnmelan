@@ -1,5 +1,67 @@
 import streamlit as st
 from streamlit_timeline import timeline
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+from collections import Counter
+
+# Prepare the word data
+def get_word_cloud_data():
+    # Words collected from different individuals
+    word_data = """
+    Lạc quan,
+    Dễ quên,
+    Hào phóng,
+    Tự tin,
+    Không sợ bàn tán,
+    Không sợ thử,
+    Tỉnh táo,
+    Kiên nhẫn,
+    Tích cực,
+    Vui vẻ, 
+    Tích cực, 
+    Dễ thương,
+    Vui vẻ, 
+    Bình tĩnh, 
+    Nhẹ nhàng,
+    Lạc quan, 
+    Mạnh mẽ, 
+    Tích cực,
+    Năng lượng, 
+    Tích cực, 
+    Lạc quan, 
+    Trẻ trung
+    """
+    return word_data
+
+# Function to clean and count word frequencies
+def process_word_data(word_data):
+    # Clean up the data: remove commas and strip spaces
+    words = [word.strip() for word in word_data.replace(",", "").splitlines()]
+    
+    # Count the frequency of each word/phrase
+    word_freq = Counter(words)
+    
+    return word_freq
+
+# Function to generate and display the word cloud
+def display_word_cloud():
+    st.subheader("Word Cloud: 3 điểm bạn thích nhất ở mẹ/bác/chị Lan?")
+    
+    # Get the data and process it into a frequency dictionary
+    word_data = get_word_cloud_data()
+    word_freq = process_word_data(word_data)
+    
+    # Generate the word cloud from the frequency dictionary
+    wordcloud = WordCloud(width=800, height=400, background_color="white", colormap='tab20b').generate_from_frequencies(word_freq)
+    
+    # Display the word cloud using matplotlib
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.imshow(wordcloud.recolor(random_state=3), interpolation='bilinear')
+    ax.axis("off")  # No axes for the word cloud
+
+    # Show the word cloud using Streamlit
+    st.pyplot(fig)
+
 
 # Section 1: MCQs Questions about Self
 def mcq_section(questions, answers_by_child):
@@ -8,11 +70,11 @@ def mcq_section(questions, answers_by_child):
     selected_answers = {}
     # Display all questions at once
     for idx, question in enumerate(questions):
+        st.divider()
         st.write(f"Câu {idx + 1}: {question}")
         
         # Display the answer options from each contestant
         options = [f"{name}: {answer}" for name, answer in answers_by_child[idx].items()]
-        options.append("Không có câu nào đúng cả")  # Add "None of the above" option
         
         selected_answers[idx] = st.multiselect(f"Mẹ hãy chọn câu trả lời đúng nhất cho Câu {idx + 1}:", options, key=f"q_{idx}")
     
@@ -25,12 +87,12 @@ def photo_mcq_section(photos, guesses_by_child):
     selected_photo_answers = {}
     # Display all photos at once
     for idx, (photo_url, question) in enumerate(photos.items()):
+        st.divider()
         st.write(f"Ảnh {idx + 1}: {question}")
-        st.image(photo_url, use_column_width=True)
+        st.image(photo_url, width=400)
         
         # Display the guessing options
         options = [f"{name}: {guess}" for name, guess in guesses_by_child[idx].items()]
-        options.append("Không có câu nào đúng cả")  # Add "None of the above" option
         
         selected_photo_answers[idx] = st.multiselect(f"Mẹ hãy chọn câu trả lời đúng nhất cho Ảnh {idx + 1}:", options, key=f"photo_{idx}")
     
@@ -40,14 +102,26 @@ def photo_mcq_section(photos, guesses_by_child):
 def memory_section(children_videos):
     st.subheader("Vòng 3: Lời chúc từ cả nhà")
 
+    # Example of different messages for each child
+    custom_messages = {
+        "Mẹ ngoại": "\"Chúc con gái **mạnh khỏe, vui vẻ, dành nhiều thời gian cho bản thân** nhé!\"",
+        "Cậu Quang và Nghé": "\"Nghé chúc bác Mai Lan **sự nghiệp trên đỉnh thành công**, nhưng vẫn có thời gian **nghỉ ngơi và tận hưởng** thế giới... Ngoài ra xinh đẹp hơn và đạt được chức cao hơn! Em Quang chúc chị trở thành **ca sĩ của năm, múa yoga dẻo hơn**. Happy birthday 🎉🎉🎉\"",
+        "Mẹ Mai Anh": "\"Chị Mai Anh chúc em luôn **trẻ trung, tràn đầy năng lượng và tiếp tục lan tỏa sự tích cực tới mọi người, luôn may mắn, và thật nhiều sức khỏe**.\"",
+        "Hà Linh": "\"Con chúc mẹ Lan **nhiều thời gian để trau dồi khả năng ca hát nghệ thuật, học thêm các kĩ năng mới, và thật nhiều sức khỏe, niềm vui, luôn cảm thấy hạnh phúc**.\"",
+        "Trung": "\"Con chúc mẹ Lan **nhiều sinh viên đạt kết quả tốt và tuyển được nhiều sinh viên, đồng thời vẫn có nhiều thời gian rảnh để làm những điều mình thích**.\"",
+        "Nguyên": "\"Con chúc mẹ Lan **luôn luôn mạnh khỏe, ít căng thẳng vì công việc và ít phải lo lắng cho bọn con** hơn. Thay vào đó mẹ có thể có thêm **nhiều thời gian để đi du lịch, khám phá các nơi trên thế giới** ạ.\""
+    }
+
     # Tabs for each child
     tabs = st.tabs([f"{child}" for child in children_videos.keys()])
     
+    # Iterate through children and display content in respective tabs
     for i, (child, video_url) in enumerate(children_videos.items()):
         with tabs[i]:
-            st.write(f"Lời chúc của {child}")
+            # Display custom message for each child
+            custom_message = custom_messages.get(child, f"Lời chúc của {child} nhân ngày sinh nhật mẹ Lan!")
+            st.write(custom_message)
             st.video(video_url)
-            st.write(f"Lời chúc của {child}!")
 
 # Section to display the final scores and show top 3 participants
 def score_conclusion_section():
@@ -123,6 +197,8 @@ def display_timeline():
 def main():
     st.title("Chúc mừng sinh nhật mẹ 🎉💃")
 
+    display_word_cloud()
+
     # Initialize scores and state flags in session state if not already done
     if 'scores' not in st.session_state:
         st.session_state.scores = {child: 0 for child in ["Mẹ ngoại", "Cậu Quang", "Mẹ Mai Anh", "Hà Linh", "Trung", "Nguyên", "Nghé"]}
@@ -142,11 +218,11 @@ def main():
         "Điều gì mẹ Lan thấy mình làm **rất giỏi** nhưng **ít người biết**?"
     ]
     answers_by_child = [
-        {"Mẹ ngoại": "Sample", "Cậu Quang": "Tiếng Anh dễ nghe", "Mẹ Mai Anh": "Hành động, diễn viên đẹp", "Hà Linh": "Diễn viên đẹp trai xinh gái", "Trung": "Sample", "Nguyên": "1F", "Nghé": "Sample"},
-        {"Mẹ ngoại": "Sample", "Cậu Quang": "Não 😂", "Mẹ Mai Anh": "Chìa khóa, điện thoại", "Hà Linh": "Điện thoại", "Trung": "Sample", "Nguyên": "Sample", "Nghé": "Sample"},
-        {"Mẹ ngoại": "Sample", "Cậu Quang": "Làm việc", "Mẹ Mai Anh": "Xả luôn!", "Hà Linh": "Cằn nhằn liên tục", "Trung": "Sample", "Nguyên": "Sample", "Nghé": "Sample"},
-        {"Mẹ ngoại": "Sample", "Cậu Quang": "Machu Picchu", "Mẹ Mai Anh": "Mexico", "Hà Linh": "Châu Âu", "Trung": "Sample", "Nguyên": "Sample", "Nghé": "Sample"},
-        {"Mẹ ngoại": "Sample", "Cậu Quang": "Sinh tố", "Mẹ Mai Anh": "Nấu ăn", "Hà Linh": "Ca hát", "Trung": "Sample", "Nguyên": "Sample", "Nghé": "Sample"}
+        {"Cậu Quang": "Tiếng Anh dễ nghe", "Mẹ Mai Anh": "Hành động, diễn viên đẹp", "Hà Linh": "Diễn viên đẹp trai xinh gái", "Trung": "Các trang phê bình phim bảo nó hay", "Nguyên": "Diễn viên giọng hay (accent Anh/Pháp hoặc hát hay)", "Nghé": "Phim dễ hiểu, diễn viên ưa nhìn"},
+        {"Mẹ ngoại": "Tắt đèn💡", "Cậu Quang": "Não 😂", "Mẹ Mai Anh": "Chìa khóa 🔑 điện thoại 📱", "Hà Linh": "Điện thoại 📱", "Trung": "Tiền 💸", "Nguyên": "Túi xách đựng tiền 🛍️ và/hoặc điện thoại 📱", "Nghé": "Túi xách 🛍️"},
+        {"Mẹ ngoại": "Không thấy Mai Lan bực bao giờ", "Cậu Quang": "Làm việc", "Mẹ Mai Anh": "Xả luôn!", "Hà Linh": "Cằn nhằn liên tục", "Trung": "Hét", "Nguyên": "Cứ kệ đấy 15 phút sau tự hết bực", "Nghé": "Chưa thấy bác Lan bực bao giờ"},
+        {"Mẹ ngoại": "Nha Trang", "Cậu Quang": "Machu Picchu", "Mẹ Mai Anh": "Mexico", "Hà Linh": "Châu Âu", "Trung": "Châu Phi (các nơi thiên nhiên hoang dã)", "Nguyên": "Nam Mỹ (văn hóa Aztec các thứ)", "Nghé": "Châu Âu"},
+        {"Mẹ ngoại": "Đối ngoại 👩‍💼", "Cậu Quang": "Sinh tố 🍹", "Mẹ Mai Anh": "Nấu ăn 🍝", "Hà Linh": "Ca hát 🎤", "Trung": "Chơi Golf 🏌️‍♂️", "Nguyên": "Dancing 💃", "Nghé": "Hát Karaoke 🎤"}
     ]
 
     # Photo guessing data for Section 2
@@ -157,21 +233,20 @@ def main():
         "photo4.jpg": "Ảnh này được chụp ở đâu, vào năm nào?"
     }
     guesses_by_child = [
-        {"Mẹ ngoại": "Guess 1A", "Cậu Quang": "Guess 1B", "Mẹ Mai Anh": "Guess 1C", "Hà Linh": "Guess 1D", "Trung": "Guess 1E", "Nguyên": "Guess 1F", "Nghé": "Guess 1G"},
-        {"Mẹ ngoại": "Guess 2A", "Cậu Quang": "Guess 2B", "Mẹ Mai Anh": "Guess 2C", "Hà Linh": "Guess 2D", "Trung": "Guess 2E", "Nguyên": "Guess 2F", "Nghé": "Guess 2G"},
-        {"Mẹ ngoại": "Guess 3A", "Cậu Quang": "Guess 3B", "Mẹ Mai Anh": "Guess 3C", "Hà Linh": "Guess 3D", "Trung": "Guess 3E", "Nguyên": "Guess 3F", "Nghé": "Guess 3G"},
-        {"Mẹ ngoại": "Guess 4A", "Cậu Quang": "Guess 4B", "Mẹ Mai Anh": "Guess 4C", "Hà Linh": "Guess 4D", "Trung": "Guess 4E", "Nguyên": "Guess 4F", "Nghé": "Guess 4G"}
+        {"Cậu Quang": "Angkor Wat, 2014", "Mẹ Mai Anh": "Angkor Wat", "Hà Linh": "Angkor Wat, 2010", "Trung": "Angkor Thom, 2015", "Nguyên": "Đền nào đấy ở VN, 2018"},
+        {"Cậu Quang": "Đức, 1995", "Mẹ Mai Anh": "Đức", "Hà Linh": "Đức, 1998", "Trung": "Đức, 1993", "Nguyên": "Đức, 1996"},
+        {"Mẹ ngoại": "2023", "Cậu Quang": "Nha Trang, 2015", "Mẹ Mai Anh": "Khi vừa đổi kiểu tóc thảm họa", "Hà Linh": "Khởi công VinUni, 2019", "Trung": "VinUni động thổ, 2018", "Nguyên": "VinUni khởi công, 2019"},
+        {"Cậu Quang": "Hà Nội, 2005", "Mẹ Mai Anh": "Khi mới đi làm sau khi sinh Trung Nguyên", "Hà Linh": "Vinschool, 2014", "Trung": "Vinschool, 2014", "Nguyên": "Vinschool, 2015"}
     ]
 
     # Video URLs for Section 3
     children_videos = {
-        "Mẹ ngoại": "https://youtu.be/tuQ5DIUFlHs?si=4dQZ9oC1V1faYFBu",
-        "Cậu Quang": "https://youtu.be/tuQ5DIUFlHs?si=4dQZ9oC1V1faYFBu",
-        "Mẹ Mai Anh": "https://youtu.be/tuQ5DIUFlHs?si=4dQZ9oC1V1faYFBu",
+        "Mẹ ngoại": "https://www.youtube.com/watch?v=ZabSEAC7cxw",
+        "Cậu Quang và Nghé": "https://youtu.be/2WEjnqvQ-MI?si=xFL8fQsqv-2MM88C",
+        "Mẹ Mai Anh": "https://youtu.be/cPafFtF4-ew?si=Hc94nrj2miYEEuu6",
         "Hà Linh": "https://youtu.be/tuQ5DIUFlHs?si=4dQZ9oC1V1faYFBu",
-        "Trung": "https://youtu.be/tuQ5DIUFlHs?si=4dQZ9oC1V1faYFBu",
-        "Nguyên": "https://youtu.be/tuQ5DIUFlHs?si=4dQZ9oC1V1faYFBu",
-        "Nghé": "https://youtu.be/tuQ5DIUFlHs?si=4dQZ9oC1V1faYFBu"
+        "Trung": "https://youtu.be/2naapkQpU4A",
+        "Nguyên": "https://www.youtube.com/watch?v=LSDAqii26P4"
     }
 
     # Display MCQ section
@@ -184,24 +259,33 @@ def main():
     # Button to calculate scores and display final results
     if st.button("Tính điểm và hiện kết quả") and not st.session_state.scoring_done:
         # Calculate scores based on selected options (MCQ + Photos)
+        
+        # Section 1: MCQ questions scoring
         for idx, selected in selected_mcq_answers.items():
+            if not selected:  # If no options were selected, skip scoring
+                continue
             for option in selected:
                 child_name = option.split(":")[0]
-                if child_name in st.session_state.scores and "Không có câu nào đúng cả" not in option:
+                if child_name in st.session_state.scores:
                     st.session_state.scores[child_name] += 1
-        
+
+        # Section 2: Photo MCQ questions scoring
         for idx, selected in selected_photo_answers.items():
+            if not selected:  # If no options were selected, skip scoring
+                continue
             for option in selected:
                 child_name = option.split(":")[0]
-                if child_name in st.session_state.scores and "Không có câu nào đúng cả" not in option:
+                if child_name in st.session_state.scores:
                     st.session_state.scores[child_name] += 1
-        
+
         st.session_state.scoring_done = True  # Mark scoring as done to avoid recalculating
 
-    # Always show scores if scoring is done
-    if st.session_state.scoring_done:
-        score_conclusion_section()
+        # Display scores
 
+    # Display the scores even after clicking to view the memory section
+    if st.session_state.scoring_done:
+        score_conclusion_section()  # Always display the scores if scoring is done
+    
     # Show button to reveal the memory videos after the scores are displayed
     if st.session_state.scoring_done and st.button("Tiếp tục đến phần lời chúc"):
         st.session_state.show_memory_section = True
