@@ -76,7 +76,7 @@ def score_conclusion_section():
     st.write("🎉 **Cảm ơn cả nhà đã tham gia trò chơi! Dưới đây là những người có điểm số cao nhất:**")
     prev_score=0
     i=-1
-    for (name, score) in enumerate(top):
+    for _, (name, score) in enumerate(top):
         i += 1
         if prev_score==score:
             i -= 1
