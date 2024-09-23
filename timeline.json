@@ -8,7 +8,7 @@
     "events": [
         {
             "media": {
-                "url": "https://drive.google.com/file/d/1EsMMrX9dHF1clptiCuA1H4OlDDOYCpWb/view?usp=sharing",
+                "url": "https://drive.google.com/file/d/1yWx34PJB2b_mXEPZBDKwBPg_P0_Vnj8f/view?usp=sharing",
                 "caption": "Đi xem đại nhạc hội Maroon 5 Phú Quốc"
             },
             "start_date": {
@@ -23,7 +23,7 @@
         },
         {
             "media": {
-                "url": "https://drive.google.com/file/d/1ZYEUr3KaxpDAGVN1hz7vpU9le54OhIO_/view?usp=sharing",
+                "url": "https://drive.google.com/file/d/1k9DDZSs1nZh3piuxMMEKG40g5woGscpl/view?usp=sharing",
                 "caption": "VinFuture Prize mùa thứ 3"
             },
             "start_date": {
@@ -38,7 +38,7 @@
         },
         {
             "media": {
-                "url": "https://drive.google.com/file/d/1RuRx_DtRvf36tna4yuigsqFAPXWiIYUO/view?usp=sharing",
+                "url": "https://drive.google.com/file/d/16LGRmnTTxnd1Yf6-ytR9iZqKE7hokReX/view?usp=sharing",
                 "caption": "Đi thăm nhà cổ"
             },
             "start_date": {
@@ -53,7 +53,7 @@
         },
          {
             "media": {
-                "url": "https://drive.google.com/file/d/1KPE6jDdTi_fLTuagjAyCFprIKihHm-qI/view?usp=sharing",
+                "url": "https://drive.google.com/file/d/1f0LS1SF850OI5FJC3o2-oD96M-tBHuKP/view?usp=sharing",
                 "caption": "Hội ngộ ở Thành Đô"
             },
             "start_date": {
@@ -68,7 +68,7 @@
         },
         {
             "media": {
-              "url": "https://drive.google.com/file/d/1GKOgLKJu09XpJHFQLXh4WELozTMVT1VP/view?usp=sharing",
+              "url": "https://drive.google.com/file/d/11QEy_Bc6FvHTLL3jNhOGbdlEzgMW2mSO/view?usp=sharing",
               "caption": "Ở Tây Tạng đón năm mới"
             },
             "start_date": {
@@ -83,7 +83,22 @@
         },
         {
             "media": {
-              "url": "https://drive.google.com/file/d/1wFsZ_JB31ExhZO-FZcqa2sYKQ_PzguQS/view?usp=sharing",
+              "url": "https://drive.google.com/file/d/1xCWR-VVfPU_ekUnoZ2R5O_0se-k9MjWB/view?usp=sharing",
+              "caption": "Tết Nguyên Đán 2024 ở Khách sạn Hà Nội"
+            },
+            "start_date": {
+                "year":2024,
+                "month":2,
+                "day":16
+            },
+            "text": {
+                "headline": "Tet Holiday",
+                "text": "Đón tết ở Hà Nội, thăm thú phố cổ, Hồ Gươm và ở tại InterContinental Hồ Tây xịn xò.</p>"
+            }
+        },
+        {
+            "media": {
+              "url": "https://drive.google.com/file/d/1LJfALaZrJVBODnicw6R2Qzonec3ZChSB/view?usp=sharing",
               "caption": "Đi làm cà phê"
             },
             "start_date": {
@@ -113,7 +128,7 @@
         },
         {
             "media": {
-              "url": "https://drive.google.com/file/d/19k1URdZ8Oq6mHH5UDTWEjmUicWtmKM-O/view?usp=sharing",
+              "url": "https://drive.google.com/file/d/1Sc1CXxCNSDM204R8xH4gwEX_PX9OQS6s/view?usp=sharing",
               "caption": "Du thuyền Hạ Long view đỉnh cao"
             },
             "start_date": {
@@ -128,7 +143,7 @@
         },
         {
             "media": {
-              "url": "https://drive.google.com/file/d/1ol-rmyNAJ3ar8WNxV8LdF9zsYz_rZMBZ/view?usp=sharing",
+              "url": "https://drive.google.com/file/d/13_c5D-3wc85zvJEizkhkO94ln8lXu-rm/view?usp=sharing",
               "caption": "Lại gặp cả nhà ở Quy Nhơn"
             },
             "start_date": {
@@ -143,7 +158,7 @@
         },
         {
             "media": {
-              "url": "https://drive.google.com/file/d/1P3aTkPiwlgSI2lpPMjm42T7Btx6-i06K/view?usp=sharing",
+              "url": "https://drive.google.com/file/d/1QK0w0z4j3Ppst0fzfCkcyvfUxxde0YSU/view?usp=sharing",
               "caption": "Tách đoàn đi lẻ Hội An"
             },
             "start_date": {
