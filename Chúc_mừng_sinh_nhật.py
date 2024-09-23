@@ -194,7 +194,7 @@ def display_timeline():
 
 # Main function to run the app
 def main():
-    st.title("Chúc mừng sinh nhật 🎉💃")
+    st.title("Chúc mừng sinh nhật mẹ 🎉💃")
 
     st.write("Chúc mừng sinh nhật nhà giáo nhân dân kiêm cựu banker kiêm ca sĩ nổi danh Lê Mai Lan! Đây là một trang web nho nhỏ được tạo ra để gửi gắm tình iu của cả nhà tới mẹ Lan, gồm nhiều phần thú dị như những trò chơi hấp dẫn, các lời chúc có cánh, dòng thời gian đầy hoài niệm...")
     st.write("Để bắt đầu, hãy cùng điểm lại dòng thời gian từ tháng 9/2023 tới tháng 9/2024, xem một năm qua đã có những sự kiện, buổi ăn chơi lớn nào trong gia đình mà có sự góp mặt của mẹ Lan nhé!")
