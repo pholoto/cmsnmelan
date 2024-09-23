@@ -201,7 +201,7 @@ def main():
     display_timeline()
 
     st.write("Tiếp theo đây là những \"từ khóa\" cả nhà dành cho mẹ Lan khi được hỏi: Ba điều thấy ấn tượng nhất về mẹ Lan. Có thể thấy sự **tích cực, vui vẻ, lạc quan** được xuất hiện với tần suất rất cao, dường như là một đặc điểm signature của mẹ Lan! Ngoài ra, cũng toàn là những lời có cánh như **dễ thương, trẻ trung** quá chi là phù hợp 😗")
-    col1, col2, col3 = st.columns([1, 2, 1])  
+    col1, col2, col3 = st.columns([0.5, 3, 0.5])  
     with col2:
         st.image("wordcloud0.png",use_column_width = True)
     st.write("Tiếp sau đây, hãy cùng đến với trò chơi nho nhỏ: \"Ai là người hiểu mẹ Lan nhất?!\" và \"Nhìn hình đoán địa điểm\". Mẹ có thể lựa chọn nhiều hơn một đáp án đúng, hoặc không chọn đáp án nào cả nếu không có đáp án nào đúng.")
