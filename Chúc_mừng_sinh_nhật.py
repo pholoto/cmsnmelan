@@ -4,62 +4,62 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from collections import Counter
 
-# Prepare the word data
-def get_word_cloud_data():
-    # Words collected from different individuals
-    word_data = """
-    Lạc quan,
-    Dễ quên,
-    Hào phóng,
-    Tự tin,
-    Không sợ bàn tán,
-    Không sợ thử,
-    Tỉnh táo,
-    Kiên nhẫn,
-    Tích cực,
-    Vui vẻ, 
-    Tích cực, 
-    Dễ thương,
-    Vui vẻ, 
-    Bình tĩnh, 
-    Nhẹ nhàng,
-    Lạc quan, 
-    Mạnh mẽ, 
-    Tích cực,
-    Năng lượng, 
-    Tích cực, 
-    Lạc quan, 
-    Trẻ trung
-    """
-    return word_data
+# # Prepare the word data
+# def get_word_cloud_data():
+#     # Words collected from different individuals
+#     word_data = """
+#     Lạc quan,
+#     Dễ quên,
+#     Hào phóng,
+#     Tự tin,
+#     Không sợ bàn tán,
+#     Không sợ thử,
+#     Tỉnh táo,
+#     Kiên nhẫn,
+#     Tích cực,
+#     Vui vẻ, 
+#     Tích cực, 
+#     Dễ thương,
+#     Vui vẻ, 
+#     Bình tĩnh, 
+#     Nhẹ nhàng,
+#     Lạc quan, 
+#     Mạnh mẽ, 
+#     Tích cực,
+#     Năng lượng, 
+#     Tích cực, 
+#     Lạc quan, 
+#     Trẻ trung
+#     """
+#     return word_data
 
-# Function to clean and count word frequencies
-def process_word_data(word_data):
-    # Clean up the data: remove commas and strip spaces
-    words = [word.strip() for word in word_data.replace(",", "").splitlines()]
+# # Function to clean and count word frequencies
+# def process_word_data(word_data):
+#     # Clean up the data: remove commas and strip spaces
+#     words = [word.strip() for word in word_data.replace(",", "").splitlines()]
     
-    # Count the frequency of each word/phrase
-    word_freq = Counter(words)
+#     # Count the frequency of each word/phrase
+#     word_freq = Counter(words)
     
-    return word_freq
+#     return word_freq
 
-# Function to generate and display the word cloud
-def display_word_cloud():
+# # Function to generate and display the word cloud
+# def display_word_cloud():
     
-    # Get the data and process it into a frequency dictionary
-    word_data = get_word_cloud_data()
-    word_freq = process_word_data(word_data)
+#     # Get the data and process it into a frequency dictionary
+#     word_data = get_word_cloud_data()
+#     word_freq = process_word_data(word_data)
     
-    # Generate the word cloud from the frequency dictionary
-    wordcloud = WordCloud(width=800, height=400, background_color="white", colormap='tab20b', prefer_horizontal=1.0).generate_from_frequencies(word_freq)
+#     # Generate the word cloud from the frequency dictionary
+#     wordcloud = WordCloud(width=800, height=400, background_color="white", colormap='tab20b', prefer_horizontal=1.0).generate_from_frequencies(word_freq)
     
-    # Display the word cloud using matplotlib
-    fig, ax = plt.subplots(figsize=(10, 5))
-    ax.imshow(wordcloud.recolor(random_state=3), interpolation='bilinear')
-    ax.axis("off")  # No axes for the word cloud
+#     # Display the word cloud using matplotlib
+#     fig, ax = plt.subplots(figsize=(10, 5))
+#     ax.imshow(wordcloud.recolor(random_state=3), interpolation='bilinear')
+#     ax.axis("off")  # No axes for the word cloud
 
-    # Show the word cloud using Streamlit
-    st.pyplot(fig)
+#     # Show the word cloud using Streamlit
+#     st.pyplot(fig)
 
 
 # Section 1: MCQs Questions about Self
@@ -196,14 +196,14 @@ def display_timeline():
 def main():
     st.title("Chúc mừng sinh nhật 🎉💃")
 
-    st.write("Chúc mừng sinh nhật nhà giáo nhân dân kiêm cựu banker kiêm ca sĩ nổi danh Lê Mai Lan! Đây là một trang web nho nhỏ được tạo ra để gửi gắm tình iu của cả nhà tới mẹ/bác/em/chị/con Mai Lan, gồm nhiều phần thú dị như những trò chơi hấp dẫn, các lời chúc có cánh, dòng thời gian đầy hoài niệm...")
-    st.image("photo0.png", use_column_width = True)
+    st.write("Chúc mừng sinh nhật nhà giáo nhân dân kiêm cựu banker kiêm ca sĩ nổi danh Lê Mai Lan! Đây là một trang web nho nhỏ được tạo ra để gửi gắm tình iu của cả nhà tới bạn, gồm nhiều phần thú dị như những trò chơi hấp dẫn, các lời chúc có cánh, dòng thời gian đầy hoài niệm...")
+    st.write("Để bắt đầu, hãy cùng điểm lại dòng thời gian từ tháng 9/2023 tới tháng 9/2024, xem một năm qua đã có những sự kiện, buổi ăn chơi lớn nào trong gia đình mà có sự góp mặt của bạn nhé!")
+    display_timeline()
 
-    st.write("Để bắt đầu, dưới đây là những \"từ khóa\" cả nhà dành cho bạn khi được hỏi: Ba điều thấy ấn tượng nhất về bạn. Có thể thấy sự **tích cực, vui vẻ, lạc quan** được xuất hiện với tần suất khá cao!")
-
-    display_word_cloud()
-    st.write("Tiếp sau đây, hãy cùng đến với trò chơi nho nhỏ: Ai là người hiểu bạn nhất?!")
-
+    st.write("Tiếp theo đây là những \"từ khóa\" cả nhà dành cho bạn khi được hỏi: Ba điều thấy ấn tượng nhất về bạn. Có thể thấy sự **tích cực, vui vẻ, lạc quan** được xuất hiện với tần suất rất cao, dường như là một đặc điểm signature của bạn! Ngoài ra, cũng toàn là những lời có cánh như **dễ thương, trẻ trung** quá chi là phù hợp 😗")
+    st.image("wordcloud0.png", width=700)
+    st.write("Tiếp sau đây, hãy cùng đến với trò chơi nho nhỏ: \"Ai là người hiểu bạn nhất?!\" và \"Nhìn hình đoán địa điểm\". Bạn có thể lựa chọn nhiều hơn một đáp án đúng, hoặc không chọn đáp án nào cả nếu không có đáp án nào đúng.")
+    
     # Initialize scores and state flags in session state if not already done
     if 'scores' not in st.session_state:
         st.session_state.scores = {child: 0 for child in ["Mẹ ngoại", "Cậu Quang", "Mẹ Mai Anh", "Hà Linh", "Trung", "Nguyên", "Nghé"]}
@@ -285,7 +285,6 @@ def main():
 
         st.session_state.scoring_done = True  # Mark scoring as done to avoid recalculating
 
-        # Display scores
 
     # Display the scores even after clicking to view the memory section
     if st.session_state.scoring_done:
@@ -298,7 +297,8 @@ def main():
     # Show memory videos only after clicking the button
     if st.session_state.show_memory_section:
         memory_section(children_videos)
-        display_timeline()
+        st.subheader("Chúc mừng sinh nhật!!! 🎉💃🎊🎂 Hãy tự thưởng một chầu karaoke và 2 ly vang trắng nhé 🎤🍷")
+        st.image("photo0.png", use_column_width = True)
 
 if __name__ == "__main__":
     main()
