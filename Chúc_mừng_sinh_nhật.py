@@ -173,14 +173,14 @@ def score_conclusion_section():
     # Fun message for the lowest participant
     if lowest:
         if lowest[0][1]!=lowest[1][1]:
-            st.write(f"😂 Ngoài ra thì có **{lowest[0][0]}** cần đi chơi với mẹ/bác/chị Lan để hiểu nhau hơn!")
+            st.write(f"😂 Ngoài ra thì có **{lowest[0][0]}** cần đi chơi với mẹ Lan để hiểu nhau hơn!")
         else:
             string = lowest[0][0]
             for i in range(len(lowest)-1):
                 if lowest[i][1] == lowest[i+1][1]:
                     string = string + " và " + lowest[i+1][0]
                 else:
-                    st.write(f"😂 Ngoài ra thì có **{string}** cần đi chơi với mẹ/bác/chị Lan để hiểu nhau hơn!")
+                    st.write(f"😂 Ngoài ra thì có **{string}** cần đi chơi với mẹ Lan để hiểu nhau hơn!")
                     break
 
 # Section to display the timeline (this will always show when the memory section is shown)
@@ -196,13 +196,13 @@ def display_timeline():
 def main():
     st.title("Chúc mừng sinh nhật 🎉💃")
 
-    st.write("Chúc mừng sinh nhật nhà giáo nhân dân kiêm cựu banker kiêm ca sĩ nổi danh Lê Mai Lan! Đây là một trang web nho nhỏ được tạo ra để gửi gắm tình iu của cả nhà tới bạn, gồm nhiều phần thú dị như những trò chơi hấp dẫn, các lời chúc có cánh, dòng thời gian đầy hoài niệm...")
-    st.write("Để bắt đầu, hãy cùng điểm lại dòng thời gian từ tháng 9/2023 tới tháng 9/2024, xem một năm qua đã có những sự kiện, buổi ăn chơi lớn nào trong gia đình mà có sự góp mặt của bạn nhé!")
+    st.write("Chúc mừng sinh nhật nhà giáo nhân dân kiêm cựu banker kiêm ca sĩ nổi danh Lê Mai Lan! Đây là một trang web nho nhỏ được tạo ra để gửi gắm tình iu của cả nhà tới mẹ Lan, gồm nhiều phần thú dị như những trò chơi hấp dẫn, các lời chúc có cánh, dòng thời gian đầy hoài niệm...")
+    st.write("Để bắt đầu, hãy cùng điểm lại dòng thời gian từ tháng 9/2023 tới tháng 9/2024, xem một năm qua đã có những sự kiện, buổi ăn chơi lớn nào trong gia đình mà có sự góp mặt của mẹ Lan nhé!")
     display_timeline()
 
-    st.write("Tiếp theo đây là những \"từ khóa\" cả nhà dành cho bạn khi được hỏi: Ba điều thấy ấn tượng nhất về bạn. Có thể thấy sự **tích cực, vui vẻ, lạc quan** được xuất hiện với tần suất rất cao, dường như là một đặc điểm signature của bạn! Ngoài ra, cũng toàn là những lời có cánh như **dễ thương, trẻ trung** quá chi là phù hợp 😗")
+    st.write("Tiếp theo đây là những \"từ khóa\" cả nhà dành cho mẹ Lan khi được hỏi: Ba điều thấy ấn tượng nhất về mẹ Lan. Có thể thấy sự **tích cực, vui vẻ, lạc quan** được xuất hiện với tần suất rất cao, dường như là một đặc điểm signature của mẹ Lan! Ngoài ra, cũng toàn là những lời có cánh như **dễ thương, trẻ trung** quá chi là phù hợp 😗")
     st.image("wordcloud0.png", width=700)
-    st.write("Tiếp sau đây, hãy cùng đến với trò chơi nho nhỏ: \"Ai là người hiểu bạn nhất?!\" và \"Nhìn hình đoán địa điểm\". Bạn có thể lựa chọn nhiều hơn một đáp án đúng, hoặc không chọn đáp án nào cả nếu không có đáp án nào đúng.")
+    st.write("Tiếp sau đây, hãy cùng đến với trò chơi nho nhỏ: \"Ai là người hiểu mẹ Lan nhất?!\" và \"Nhìn hình đoán địa điểm\". Mẹ có thể lựa chọn nhiều hơn một đáp án đúng, hoặc không chọn đáp án nào cả nếu không có đáp án nào đúng.")
     
     # Initialize scores and state flags in session state if not already done
     if 'scores' not in st.session_state:
@@ -216,10 +216,10 @@ def main():
 
     # Questions and answers data for Section 1
     questions = [
-        "Yếu tố quan trọng nhất khiến mẹ/bác/chị Lan thấy **một bộ phim hay**?",
-        "Khi ra khỏi nhà, mẹ/bác/chị Lan dễ **quên đồ gì nhất**?",
-        "Mẹ/bác/chị Lan sẽ **làm gì khi bực mình**?",
-        "Địa điểm du lịch mà mẹ/bác/chị Lan **muốn đến tiếp theo**?",
+        "Yếu tố quan trọng nhất khiến mẹ Lan thấy **một bộ phim hay**?",
+        "Khi ra khỏi nhà, mẹ Lan dễ **quên đồ gì nhất**?",
+        "Mẹ Lan sẽ **làm gì khi bực mình**?",
+        "Địa điểm du lịch mà mẹ Lan **muốn đến tiếp theo**?",
         "Điều gì mẹ Lan thấy mình làm **rất giỏi** nhưng **ít người biết**?"
     ]
     answers_by_child = [
@@ -297,7 +297,8 @@ def main():
     # Show memory videos only after clicking the button
     if st.session_state.show_memory_section:
         memory_section(children_videos)
-        st.subheader("Chúc mừng sinh nhật!!! 🎉💃🎊🎂 Hãy tự thưởng một chầu karaoke và 2 ly vang trắng nhé 🎤🍷")
+        st.divider()
+        st.write("Chúc mừng sinh nhật mẹ Lan!!! 🎉💃🎊🎂 Hãy tự thưởng một chầu karaoke và 2 ly vang trắng nhá ạ 🎤🍷")
         st.image("photo0.png", use_column_width = True)
 
 if __name__ == "__main__":
