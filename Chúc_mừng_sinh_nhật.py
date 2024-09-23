@@ -99,7 +99,7 @@ def photo_mcq_section(photos, guesses_by_child):
 
 # Section 3: Sharing Videos and Memories (No scoring here)
 def memory_section(children_videos):
-    st.subheader("Vòng 3: Lời chúc từ cả nhà")
+    st.subheader("Lời chúc từ cả nhà")
 
     # Example of different messages for each child
     custom_messages = {
@@ -298,8 +298,9 @@ def main():
     if st.session_state.show_memory_section:
         memory_section(children_videos)
         st.divider()
-        st.write("Chúc mừng sinh nhật mẹ Lan!!! 🎉💃🎊🎂 Hãy tự thưởng một chầu karaoke và 2 ly vang trắng nhá ạ 🎤🍷")
+        st.write("Chúc mừng sinh nhật mẹ Lan!!! 🎉🎊🎂 Hãy tự thưởng một chầu karaoke và 2 ly vang trắng nhá ạ 🍷")
         st.image("photo0.png", use_column_width = True)
+        st.write("Hẹn mẹ ở đợt nhận quà tiếp theo - 23/09/2025!")
 
 if __name__ == "__main__":
     main()
